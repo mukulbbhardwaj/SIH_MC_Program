@@ -4,19 +4,19 @@
   Be sure to check out other examples!
  *************************************************************/
 
-#include "DHTesp.h"
-#include <ESP8266WiFi.h>
-#include <BlynkSimpleEsp8266.h>
-DHTesp dht;
-
 // Template ID, Device Name and Auth Token are provided by the Blynk.Cloud
 // See the Device Info tab, or Template settings
 #define BLYNK_TEMPLATE_ID           "TMPL2fhWPPeV"
 #define BLYNK_DEVICE_NAME           "Quickstart Device"
 #define BLYNK_AUTH_TOKEN            "IHR7DuYVAKXoIIA-EULWfFA8NXpQWick"
 
+
 // Comment this out to disable prints and save space
 #define BLYNK_PRINT Serial
+
+
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 
 char auth[] = BLYNK_AUTH_TOKEN;
 
@@ -63,9 +63,7 @@ void setup()
   // You can also specify server:
   //Blynk.begin(auth, ssid, pass, "blynk.cloud", 80);
   //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
-  Serial.println();
-  Serial.println("Status\t\tHumidity (%)\t\tTemperature (C)\t");
-  dht.setup(14, DHTesp::DHT11); // GPIO14
+
   // Setup a function to be called every second
   timer.setInterval(1000L, myTimerEvent);
 }
@@ -77,19 +75,5 @@ void loop()
   // You can inject your own code or combine it with other sketches.
   // Check other examples on how to communicate with Blynk. Remember
   // to avoid delay() function!
-  float humidity = dht.getHumidity();
-  float temperature = dht.getTemperature();
-  Serial.print("Status: ");
-  Serial.print(dht.getStatusString());
-  Serial.print("\t");
-  Serial.print("Humidity (%): ");
-  Serial.print(humidity, 1);
-  Serial.print("\t");
-  Serial.print("Temperature (C): ");
-  Serial.print(temperature, 1);
-  Serial.print("\t");
-  Serial.print("MQ data : ");
-  Serial.print(analogRead(A0));
-  Serial.print("\t");
-  Serial.println();
 }
+
